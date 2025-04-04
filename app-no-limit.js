@@ -11,7 +11,12 @@ require('dotenv').config();
 
 // Initialize Firebase
 admin.initializeApp({
-    credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT))
+    credential: admin.credential.cert(
+        // This checks if FIREBASE_SERVICE_ACCOUNT is a string (from Render) or already parsed (local)
+        typeof process.env.FIREBASE_SERVICE_ACCOUNT === 'string' 
+            ? JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT) 
+            : process.env.FIREBASE_SERVICE_ACCOUNT
+    )
 });
 const db = admin.firestore();
 
@@ -224,7 +229,8 @@ app.use('/login', limiter);
 app.use('/register', limiter);
 app.use('/verify-mfa', limiter);
 
-const PORT = 3003; // Cambia el puerto
+// At the bottom of your file where you start the server
+const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
