@@ -1,15 +1,19 @@
 {
   "name": "app-no-limit-server",
   "version": "1.0.0",
+  "description": "App No Limit Server",
   "main": "app-no-limit.js",
   "scripts": {
-  "start": "node app-no-limit.js"
-},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+    "start": "node app-no-limit.js"
+  },
   "dependencies": {
-    "express-rate-limit": "^7.5.0"
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "jsonwebtoken": "^9.0.2",
+    "speakeasy": "^2.0.0",
+    "cors": "^2.8.5",
+    "firebase-admin": "^11.11.1",
+    "express-rate-limit": "^7.1.5",
+    "dotenv": "^16.3.1"
   }
 }
